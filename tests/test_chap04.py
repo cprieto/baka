@@ -38,3 +38,26 @@ def test_single_linked_list_iter():
 
     elems = list(ll)
     assert elems == ['a', 'b', 'c']
+
+
+def test_single_linked_list_delete():
+    ll = SingleLinkedList()
+    ll.delete(100)
+
+    ll.append(1)
+    ll.append(2)
+    ll.append(3)
+    ll.append(4)
+    ll.append(5)
+
+    ll.delete(100)
+    assert list(ll) == [1, 2, 3, 4, 5]
+
+    ll.delete(2)
+    assert list(ll) == [1, 3, 4, 5]
+
+    ll.delete(1)
+    assert list(ll) == [3, 4, 5]
+
+    ll.delete(5)
+    assert list(ll) == [3, 4]

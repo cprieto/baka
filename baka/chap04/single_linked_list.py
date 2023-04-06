@@ -46,3 +46,18 @@ class SingleLinkedList(Generic[T]):
             yield current.data
             current = current.next
         return
+
+    def delete(self, data: T):
+        current = self.head
+        prev = self.head
+        while current:
+            if current.data == data:
+                if current == self.head:
+                    self.head = current.next
+                else:
+                    prev.next = current.next
+                self._size -= 1
+                return
+
+            prev = current
+            current = current.next
