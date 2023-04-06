@@ -4,18 +4,45 @@ T = TypeVar('T')
 
 
 class Node(Generic[T]):
-    def __int__(self, data: T):
+    def __init__(self, data: T):
         self.data = data
         self.next: Optional[Node[T]] = None
 
     def __str__(self):
-        next_node = "NULL" if self.next else str(self.next)
-        return f'{self.data} -> {next_node}'
+        return f"{self.data} -> {str(self.next) if self.next else 'NULL'}"
 
 
 class SingleLinkedList(Generic[T]):
-    def __int__(self):
+    def __init__(self):
+        self.head: Optional[Node[T]] = None
         self.tail: Optional[Node[T]] = None
+        self._size = 0
+
+    @property
+    def size(self) -> int:
+        return self._size
+
+    def __str__(self):
+        if not self.head:
+            return 'Empty'
+        return str(self.head)
 
     def append(self, data: T):
-        pass
+        node = Node(data)
+        if not self.head:
+            self.head = node
+            self.tail = node
+        else:
+            self.tail.next = node
+            self.tail = node
+        self._size += 1
+
+    def __iter__(self):
+        if not self.head:
+            return
+
+        current = self.head
+        while current:
+            yield current.data
+            current = current.next
+        return
