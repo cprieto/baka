@@ -61,3 +61,13 @@ def test_single_linked_list_delete():
 
     ll.delete(5)
     assert list(ll) == [3, 4]
+
+
+def test_single_list_search():
+    ll = SingleLinkedList()
+    ll.append(3)
+    ll.append(12)
+    ll.append(5)
+
+    assert not ll.search(100)
+    assert ll.search(5)

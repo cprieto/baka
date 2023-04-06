@@ -61,3 +61,15 @@ class SingleLinkedList(Generic[T]):
 
             prev = current
             current = current.next
+
+    def search(self, data):
+        current = self.head
+        while current:
+            if current.data == data:
+                return True
+            current = current.next
+        return False
+
+    def clear(self):
+        self.head = None
+        self.tail = None
